@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서울워치</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=34">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <!-- Left Navigation -->
+            <nav class="nav nav-left" id="navLeft">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="all-watches.html" class="nav-link">ALL WATCHES</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">BY BRAND</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-inner">
+                                <a href="brand-patek-philippe.html" class="mega-menu-link">PATEK PHILIPPE</a>
+                                <a href="brand-audemars-piguet.html" class="mega-menu-link">AUDEMARS PIGUET</a>
+                                <a href="brand-vacheron-constantin.html" class="mega-menu-link">VACHERON CONSTANTIN</a>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">ROLEX</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-rolex.html">ALL ROLEX</a>
+                                        <a href="brand-rolex-mens.html">ROLEX MEN'S</a>
+                                        <a href="brand-rolex-womens.html">ROLEX WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">CARTIER</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-cartier.html">ALL CARTIER</a>
+                                        <a href="brand-cartier-mens.html">CARTIER MEN'S</a>
+                                        <a href="brand-cartier-womens.html">CARTIER WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <a href="brand-piaget.html" class="mega-menu-link">PIAGET</a>
+                                <a href="brand-omega.html" class="mega-menu-link">OMEGA</a>
+                                <a href="brand-other.html" class="mega-menu-link">OTHER LUXURY BRANDS</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="archives.html" class="nav-link">ARCHIVES</a>
+                    </li>
+                    <!-- Mobile Only Menu Items -->
+                    <li class="nav-item mobile-only">
+                        <a href="about-us.html" class="nav-link">ABOUT US</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Center Logo -->
+            <a href="http://115.68.223.124/seoulwatch" class="logo">
+                <img src="other/로고/로고.png" alt="Seoul Watch">
+            </a>
+
+            <!-- Right Navigation + Icons -->
+            <div class="header-right">
+                <nav class="nav nav-right" id="navRight">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="about-us.html" class="nav-link">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="wishlist.html" class="header-icon" aria-label="Wishlist">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="header-icon" aria-label="Search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="header-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('other/메인히어로/메인히어로 이미지1.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('other/메인히어로/메인히어로 이미지2.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('other/메인히어로/메인히어로 이미지3.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('other/메인히어로/메인히어로 이미지4.jpg')"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="hero-label">SEOUL WATCH</span>
+            <h1 class="hero-title">
+                <span class="line"><span>Wear the Past.</span></span>
+                <span class="line"><span>Own the Future.</span></span>
+            </h1>
+            <p class="hero-subtitle">Cherish Every Moment with Seoul Watch</p>
+            <div class="hero-cta">
+                <a href="all-watches.html" class="btn btn-primary magnetic-btn">
+                    <span>SHOP ALL WATCHES</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <section class="marquee-section">
+        <div class="marquee-wrapper">
+            <div class="marquee-content">
+                <span>Patek Philippe</span>
+                <div class="dot"></div>
+                <span>Audemars Piguet</span>
+                <div class="dot"></div>
+                <span>Vacheron Constantin</span>
+                <div class="dot"></div>
+                <span>Rolex</span>
+                <div class="dot"></div>
+                <span>Cartier</span>
+                <div class="dot"></div>
+                <span>Piaget</span>
+                <div class="dot"></div>
+                <span>Omega</span>
+                <div class="dot"></div>
+                <span>Patek Philippe</span>
+                <div class="dot"></div>
+                <span>Audemars Piguet</span>
+                <div class="dot"></div>
+                <span>Vacheron Constantin</span>
+                <div class="dot"></div>
+                <span>Rolex</span>
+                <div class="dot"></div>
+                <span>Cartier</span>
+                <div class="dot"></div>
+                <span>Piaget</span>
+                <div class="dot"></div>
+                <span>Omega</span>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="section new-arrivals" id="newArrivals">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Latest Pieces</span>
+                <h2 class="section-title">New <span class="highlight">Arrivals</span></h2>
+            </div>
+            <div class="bento-grid" data-category="all">
+                <!-- Products loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Showcase Section -->
+    <section class="section brand-showcase" id="brandShowcase">
+        <div class="container">
+            <div class="brand-intro reveal">
+                <span class="brand-intro-label">Our Collections</span>
+                <h2 class="brand-intro-title">
+                    <span class="line">In a vast and expansive world.</span>
+                    <span class="line"><em>Master Timepieces</em> will remain an <span class="highlight">eternal work of art</span></span>
+                </h2>
+                <p class="brand-intro-subtitle">We welcome you to experience the unique joy wonder of TIMEPIECES.</p>
+                <div class="brand-intro-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </span>
+                    <span class="deco-line"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand 1 - Rolex -->
+        <div class="brand-item">
+            <div class="brand-image">
+                <img src="other/브랜드설명/롤렉스.jpg" alt="Rolex">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">01</span>
+                <h3 class="brand-name">ROLEX</h3>
+                <p class="brand-description">롤렉스(Rolex)는 1905년 한스 윌스도르프가 영국에서 설립한 이후, 1919년 본사를 스위스 제네바로 옮기며 세계적인 고급 명품시계 브랜드로 자리 잡았다. 1926년 세계 최초 방수 시계 오이스터(Oyster)를 시작으로 1931년에는 자동 기계식 시계인 퍼페추얼(Perpetual)을 개발하며 기술적 혁신을 이어갔다. 서브마리너(Submariner), 데이토나(Daytona), 데이저스트(Datejust) 등 전문성과 디자인을 겸비한 대표 모델들이 존재하며 클래식, 탐험, 스포츠, 파일럿 등 다양한 분야에서 신뢰받는 명품 시계로 인정받았다. 영화와 스포츠 등 대중문화와의 다양한 마케팅을 통하여 성공과 부의 상징이 담긴 대표적인 럭셔리워치 브랜드로 알려졌다.</p>
+                <a href="brand-rolex.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Rolex</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 2 - Cartier -->
+        <div class="brand-item reverse">
+            <div class="brand-image">
+                <img src="other/브랜드설명/까르띠에.jpg" alt="Cartier">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">02</span>
+                <h3 class="brand-name">CARTIER</h3>
+                <p class="brand-description">까르띠에(Cartier)는 1847년 파리에서 시작된 럭셔리 주얼리 브랜드로, 1904년 비행사 알베르토 산토스 뒤몽을 위해 처음 제작한 '산토스(Santos)' 시계를 통해 시계 역사에 본격적으로 진입했다. 이는 세계 최초의 남성용 손목시계 중 하나로 평가받으며 브랜드의 전환점을 만들었다. 이후 탱크(Tank), 발롱블루(Ballon Bleu), 파샤(Pasha) 등 독창적인 디자인의 모델들을 출시하며 우아하고 정교한 미학을 선보였다. 보석 세공 기술이 접목된 하이앤드 시계는 특히 여성들에게 인기를 끌었고, 편리한 배터리 쿼츠 시계와 높은 기술력이 담긴 기계식 모델을 모두 갖춰 실용성과 다양성을 동시에 제공하고 있다.</p>
+                <a href="brand-cartier.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Cartier</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 3 - Patek Philippe -->
+        <div class="brand-item">
+            <div class="brand-image">
+                <img src="other/브랜드설명/파텍필립.jpg" alt="Patek Philippe">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">03</span>
+                <h3 class="brand-name">PATEK PHILIPPE</h3>
+                <p class="brand-description">파텍 필립(Patek Philippe)은 1839년 스위스 제네바에서 안토니 파텍과 프랑수아 차페크가 공동 설립한 후, 1845년 시계공 장 아드리앵 필립이 합류하며 현재의 브랜드 이름이 완성되었다. 세계 최고급 시계 브랜드 중 하나로, 전 세계 많은 왕족과 유명 인사들이 주로 애용하며 역사적인 명성을 쌓았다. 파텍 필립은 퍼페추얼 캘린더, 크로노그래프, 미닛 리피터 등 복잡 기능(컴플리케이션) 분야에서 선구적인 기술력을 갖추고 있으며, 대부분의 시계는 수작업으로 제작한다. 대표 모델로는 칼라트라바(Calatrava), 노틸러스(Nautilus), 아쿠아넛(Aquanaut) 시리즈가 있다.</p>
+                <a href="brand-patek-philippe.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Patek Philippe</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 4 - Audemars Piguet -->
+        <div class="brand-item reverse">
+            <div class="brand-image">
+                <img src="other/브랜드설명/오데마피게.jpg" alt="Audemars Piguet">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">04</span>
+                <h3 class="brand-name">AUDEMARS PIGUET</h3>
+                <p class="brand-description">오데마 피게(Audemars Piguet)는 1875년 스위스 르 브라쉬(Le Brassus)에서 쥘 루이 오데마와 에드워드 오귀스트 피게가 설립한 하이앤드 고급 시계 브랜드로, 지금까지 창립 가문에 의해 운영되는 드문 자체 독립 시계 브랜드이다. 복잡한 기계식 무브먼트와 예술적 완성도로 오랜 명성을 쌓아왔으며, 1972년에는 최초의 스틸 소재의 럭셔리 스포츠 워치 '로얄오크(Royal Oak)'를 출시해 시계 업계에 혁신을 일으켰다. 세계적인 시계 디자이너인 제랄드 젠타(Gérald Genta)가 디자인한 로얄오크는 독특한 팔각형 디자인의 옥타곤 베젤과 일체형 브레이슬릿으로 전통을 깨고 새로운 시장을 열었다.</p>
+                <a href="brand-audemars-piguet.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Audemars Piguet</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 5 - Vacheron Constantin -->
+        <div class="brand-item">
+            <div class="brand-image">
+                <img src="other/브랜드설명/바쉐론.jpg" alt="Vacheron Constantin">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">05</span>
+                <h3 class="brand-name">VACHERON CONSTANTIN</h3>
+                <p class="brand-description">바쉐론 콘스탄틴(Vacheron Constantin)은 1755년 스위스 제네바에서 장 마크 바쉐론이 설립한 세계에서 가장 오래된 시계 브랜드 중 하나로, 260년이 넘는 역사 동안 단 한 번도 생산을 중단하지 않은 전통성을 자랑한다. 정교한 수공예 기술과 고전적인 디자인을 바탕으로 최고급 기계식 시계를 제작해왔으며, 탁월한 장인 정신과 예술성으로 하이앤드 고급 시계의 상징으로 여겨진다. 대표 모델로는 클래식한 페트리모니(Patrimony), 기하학적 다이버워치 디자인의 오버시즈(Overseas), 컴플리케이션이 담긴 레카비노(Les Cabinotiers)이 있다.</p>
+                <a href="brand-vacheron-constantin.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Vacheron Constantin</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 6 - Piaget -->
+        <div class="brand-item reverse">
+            <div class="brand-image">
+                <img src="other/브랜드설명/피아제.jpg" alt="Piaget">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">06</span>
+                <h3 class="brand-name">PIAGET</h3>
+                <p class="brand-description">피아제(Piaget)는 1874년 스위스 라코토페에서 조르주-에두아르 피아제에 의해 설립된 고급 시계 및 주얼리 브랜드다. 초창기에는 정밀한 시계 무브먼트 제작으로 명성을 얻었고, 20세기 중반부터는 세계적으로 유명한 초박형 무브먼트를 개발하며 기술력을 인정받았다. 1957년의 '9P' 수동 무브먼트와 1960년의 '12P' 자동 무브먼트는 당시 세계에서 가장 얇은 시계 무브먼트로 큰 파장을 일으켰다. 이후 피아제는 하이 주얼리 예술성과 워치메이킹 장인 정신을 결합하여 독창적인 디자인의 시계들을 선보였다. 대표 컬렉션으로는 알티플라노(Altiplano)와 피아제 폴로(Piaget Polo) 등이 있다.</p>
+                <a href="brand-piaget.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Piaget</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Brand 7 - Omega -->
+        <div class="brand-item">
+            <div class="brand-image">
+                <img src="other/브랜드설명/오메가.jpg" alt="Omega">
+            </div>
+            <div class="brand-content">
+                <span class="brand-number">07</span>
+                <h3 class="brand-name">OMEGA</h3>
+                <p class="brand-description">오메가(Omega)는 1848년 스위스 라 쇼드퐁에서 루이 브랑트가 설립한 고급 시계 브랜드로, 현재 스와치 그룹에 속해 있다. 정확성과 내구성으로 유명하며, 여러 차례 올림픽 공식 타임키퍼로 선정되었다. 특히 1969년 아폴로 11호 달 착륙 시 착용된 시계로 역사적 명성을 얻었다. 대표 라인은 스피드마스터, 씨마스터, 컨스텔레이션, 드빌 등이 있으며, 코액시얼(Co-Axial) 무브먼트를 통해 정밀성과 내구성을 강화했다. 또한 제임스 본드 영화의 공식 시계 브랜드로 알려져 있으며, 전통과 혁신을 겸비한 세계적인 럭셔리 시계 브랜드로 평가받는다.</p>
+                <a href="brand-omega.html" class="btn btn-secondary magnetic-btn">
+                    <span>Shop Omega</span>
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Seoul Watch Section -->
+    <section class="section about-section" id="aboutSection">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="about-header reveal">
+                <span class="section-label">About Seoul Watch</span>
+                <h2 class="about-main-title">
+                    We Value the <span class="highlight">Authenticity</span><br>
+                    of Our Products
+                </h2>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="about-grid">
+                <!-- Left: Certificate Image Showcase -->
+                <div class="about-showcase reveal">
+                    <div class="showcase-card">
+                        <div class="showcase-image">
+                            <img src="other/서울워치 소개/소개2.jpg" alt="Seoul Watch Certificate">
+                        </div>
+                        <div class="showcase-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <span>100% Verified Authentic</span>
+                        </div>
+                    </div>
+                    <div class="showcase-accent"></div>
+                </div>
+
+                <!-- Right: Description & Features -->
+                <div class="about-info">
+                    <div class="about-text reveal">
+                        <p class="about-description">Every timepiece that passes through Seoul Watch undergoes rigorous authentication by our team of certified horologists. We partner only with trusted sources and provide comprehensive documentation.</p>
+                        <p class="about-description">Our commitment to excellence extends beyond the sale, with dedicated after-service support for all our valued customers.</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="about-stats reveal">
+                        <div class="stat-card">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Timepieces</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Luxury Brands</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Years Experience</span>
+                            <div class="stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn btn-primary magnetic-btn reveal">
+                        <span>Contact Us</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Footer Top -->
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="http://115.68.223.124/seoulwatch" class="footer-logo">
+                        <img src="other/로고/로고.png" alt="Seoul Watch">
+                    </a>
+                    <p class="footer-tagline">Curating timeless luxury since 2020</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Shop</h4>
+                        <a href="all-watches.html">All Watches</a>
+                        <a href="all-watches.html">New Arrivals</a>
+                        <a href="all-watches.html">By Brand</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Company</h4>
+                        <a href="about-us.html">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="https://blog.naver.com/vintage3445" target="_blank">Blog</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Support</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Shipping</a>
+                        <a href="#">Returns</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 Seoul Watch. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator"></span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-header">
+            <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="브랜드, 모델명으로 검색...">
+            </div>
+            <button class="search-modal-close" id="searchClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="search-modal-body" id="searchResults">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Seoul Watch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=34">
+    <style>
+        /* ===== ABOUT PAGE TRENDY STYLES ===== */
+
+        /* Hero Section - Full Screen Immersive */
+        .about-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-dark);
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 30%);
+        }
+
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, var(--bg-dark) 100%);
+            pointer-events: none;
+        }
+
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1100px;
+            padding: 120px 2rem 80px;
+        }
+
+        .about-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50px;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-hero-badge span {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .about-hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .about-hero-english {
+            font-size: clamp(1rem, 1.5vw, 1.15rem);
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 2.2;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+            margin: 3rem auto;
+        }
+
+        .about-hero-korean {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-primary);
+            line-height: 2.4;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .about-hero-signature {
+            margin-top: 4rem;
+        }
+
+        .about-hero-signature p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .about-hero-signature .name {
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .scroll-hint-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--gold-primary), transparent);
+            animation: scrollDown 1.5s infinite;
+        }
+
+        @keyframes scrollDown {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            50.1% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* ===== Philosophy Section - Modern Split Layout ===== */
+        .philosophy-section {
+            padding: 0;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .philosophy-header {
+            text-align: center;
+            padding: 8rem 2rem 5rem;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-primary) 100%);
+        }
+
+        .philosophy-header .section-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 30px;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .philosophy-image-wrapper {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .philosophy-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+        }
+
+        .philosophy-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 50%, var(--bg-primary) 100%);
+        }
+
+        .philosophy-cards-wrapper {
+            padding: 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .philosophy-card {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .philosophy-card:last-child {
+            border-bottom: none;
+        }
+
+        .philosophy-card::before {
+            content: '';
+            position: absolute;
+            left: -4rem;
+            top: 50%;
+            width: 3px;
+            height: 0;
+            background: var(--gold-primary);
+            transition: height 0.4s ease;
+            transform: translateY(-50%);
+        }
+
+        .philosophy-card:hover::before {
+            height: 60px;
+        }
+
+        .philosophy-card-number {
+            font-size: 4rem;
+            font-weight: 200;
+            color: rgba(212, 175, 55, 0.15);
+            line-height: 1;
+            margin-bottom: 1rem;
+            transition: color 0.4s ease;
+        }
+
+        .philosophy-card:hover .philosophy-card-number {
+            color: rgba(212, 175, 55, 0.3);
+        }
+
+        .philosophy-card-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            line-height: 1.5;
+            transition: transform 0.4s ease;
+        }
+
+        .philosophy-card:hover .philosophy-card-title {
+            transform: translateX(10px);
+        }
+
+        .philosophy-card-text {
+            color: var(--text-secondary);
+            line-height: 2;
+            font-size: 0.95rem;
+            max-width: 500px;
+        }
+
+        /* ===== Message Section - Centered Quote ===== */
+        .message-section {
+            padding: 10rem 2rem;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-section::before {
+            content: '"';
+            position: absolute;
+            top: 5rem;
+            left: 10%;
+            font-size: 20rem;
+            font-family: Georgia, serif;
+            color: rgba(212, 175, 55, 0.03);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .message-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-text {
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            color: var(--text-primary);
+            line-height: 2.2;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        .message-signature {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .message-signature::before {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: var(--gold-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .message-signature p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.15em;
+        }
+
+        .message-signature .name {
+            font-size: 1.25rem;
+            color: var(--gold-primary);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+        }
+
+        /* ===== Contact Section - Glass Cards ===== */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-header .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        .contact-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 5rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-card {
+            position: relative;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1.5rem;
+            color: var(--gold-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-value {
+            color: var(--text-primary);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: var(--gold-primary);
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 1200px) {
+            .philosophy-cards-wrapper {
+                padding: 4rem 3rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .philosophy-layout {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .philosophy-image-wrapper {
+                position: relative;
+                height: 60vh;
+            }
+
+            .philosophy-image-overlay {
+                background: linear-gradient(0deg, var(--bg-primary) 0%, transparent 50%);
+            }
+
+            .philosophy-cards-wrapper {
+                padding: 4rem 2rem;
+            }
+
+            .philosophy-card::before {
+                left: 0;
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero-content {
+                padding: 100px 1.5rem 60px;
+            }
+
+            .about-hero-english {
+                font-size: 0.95rem;
+                line-height: 2;
+            }
+
+            .about-hero-korean {
+                font-size: 1.05rem;
+            }
+
+            .philosophy-header {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .philosophy-card {
+                padding: 3rem 0;
+            }
+
+            .philosophy-card-number {
+                font-size: 3rem;
+            }
+
+            .philosophy-card-title {
+                font-size: 1.25rem;
+            }
+
+            .message-section {
+                padding: 6rem 1.5rem;
+            }
+
+            .message-section::before {
+                font-size: 10rem;
+                top: 2rem;
+                left: 5%;
+            }
+
+            .message-text {
+                font-size: 1.15rem;
+            }
+
+            .contact-section {
+                padding: 5rem 1.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .contact-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .scroll-hint {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero-badge {
+                padding: 0.5rem 1rem;
+            }
+
+            .about-hero-badge span {
+                font-size: 0.6rem;
+            }
+
+            .philosophy-image-wrapper {
+                height: 50vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <nav class="nav nav-left" id="navLeft">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="all-watches.html" class="nav-link">ALL WATCHES</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">BY BRAND</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-inner">
+                                <a href="brand-patek-philippe.html" class="mega-menu-link">PATEK PHILIPPE</a>
+                                <a href="brand-audemars-piguet.html" class="mega-menu-link">AUDEMARS PIGUET</a>
+                                <a href="brand-vacheron-constantin.html" class="mega-menu-link">VACHERON CONSTANTIN</a>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">ROLEX</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-rolex.html">ALL ROLEX</a>
+                                        <a href="brand-rolex-mens.html">ROLEX MEN'S</a>
+                                        <a href="brand-rolex-womens.html">ROLEX WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">CARTIER</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-cartier.html">ALL CARTIER</a>
+                                        <a href="brand-cartier-mens.html">CARTIER MEN'S</a>
+                                        <a href="brand-cartier-womens.html">CARTIER WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <a href="brand-piaget.html" class="mega-menu-link">PIAGET</a>
+                                <a href="brand-omega.html" class="mega-menu-link">OMEGA</a>
+                                <a href="brand-other.html" class="mega-menu-link">OTHER LUXURY BRANDS</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="archives.html" class="nav-link">ARCHIVES</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="about-us.html" class="nav-link">ABOUT US</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <a href="index.html" class="logo">
+                <img src="other/로고/로고.png" alt="Seoul Watch">
+            </a>
+
+            <div class="header-right">
+                <nav class="nav nav-right" id="navRight">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="about-us.html" class="nav-link">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="wishlist.html" class="header-icon" aria-label="Wishlist">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="header-icon" aria-label="Search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/seoulwatch_" target="_blank" class="header-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <div class="about-hero-badge">
+                <span>About Seoul Watch</span>
+            </div>
+
+            <p class="about-hero-english">
+                Watches stand the test of time as eternal works of art<br>
+                that demonstrate both status and history.<br>
+                They are a diverse symbol of expression<br>
+                that is constantly adapting with the change of time.<br>
+                Even though time is forever passing,<br>
+                they retain their value and uniqueness.<br>
+                Each has a different story to be told.<br>
+                As much as the world is vast,<br>
+                so is the selection of timepieces available to collect.<br>
+                Seoul Watch welcomes you to delve into the world of timepieces.
+            </p>
+
+            <div class="hero-divider"></div>
+
+            <p class="about-hero-korean">
+                세상은 넓고 소유하고 싶은 시계는 정말 많습니다.<br>
+                시계는 삶의 원동력이며, 그 사람을 표현하는 상징성을 담고 있습니다.<br>
+                시대를 초월하는 가치는 영원하며 특별합니다.<br>
+                감동과 재미가 넘치는 서울워치에 오신 것을 진심으로 환영합니다.
+            </p>
+
+            <div class="about-hero-signature">
+                <p>가치 있는 시계의 시작</p>
+                <span class="name">서울워치 권태영</span>
+            </div>
+        </div>
+
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="philosophy-section">
+        <div class="philosophy-header">
+            <span class="section-label">Our Philosophy</span>
+            <h2 class="section-title">서울워치의 <span class="highlight">철학</span></h2>
+        </div>
+
+        <div class="philosophy-layout">
+            <div class="philosophy-image-wrapper">
+                <img src="other/철학1.jpg" alt="Seoul Watch Philosophy">
+                <div class="philosophy-image-overlay"></div>
+            </div>
+
+            <div class="philosophy-cards-wrapper">
+                <div class="philosophy-card">
+                    <div class="philosophy-card-number">01</div>
+                    <h3 class="philosophy-card-title">역사적 가치와 히스토리를<br>정확히 전하고자 하는 것</h3>
+                    <p class="philosophy-card-text">
+                        시계가 품고 있는 시대별 역사, 그 시대를 느낄 수 있는 시간적 가치를 정확히 이해하고 전달하는 것입니다. 단순한 시간을 보기 위한 물건이 아닌, 시대적인 배경과 트랜드를 오랜 기간 간직 및 소유할 수 있는 진정한 아름다움입니다.
+                    </p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-card-number">02</div>
+                    <h3 class="philosophy-card-title">가치 있는 컬렉션</h3>
+                    <p class="philosophy-card-text">
+                        절대로 쉽게 만족하지 않습니다. 소개하는 서울워치의 시계들은 높은 가치성과 희소성을 겸비하고 있으며, 서울워치가 보유한 국내와 해외를 넘나드는 세계적인 '네트워킹'을 통하여 심도 있는 워치컬렉팅의 세계로 인도합니다. 전문 워치메이커들과 협력 감정사들을 통하여 상품에 대한 수차례 검증 단계를 거치며, 빈티지 시계 같은 경우 고도의 복원과 검수 과정을 통하여 컬렉터 분들에게 선보입니다.
+                    </p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-card-number">03</div>
+                    <h3 class="philosophy-card-title">믿고 안심할 수 있는 보증</h3>
+                    <p class="philosophy-card-text">
+                        서울워치는 판매한 모든 시계에 대해 자체 '정품' 보증서류를 발급합니다. 자연적인 시계의 이상발생과 사소한 문제는 1년 이내 기본적인 수리를 무상으로 하고 있으며, 서울워치에서 구매한 시계라면 언제든지 상태 체크해 드리며 수리가 필요할 시 책임지고 관리합니다. 서울워치 사후관리에 불만족은 절대 없다고 자부합니다.
+                    </p>
+                </div>
+
+                <div class="philosophy-card">
+                    <div class="philosophy-card-number">04</div>
+                    <h3 class="philosophy-card-title">시계와 사람의 인연</h3>
+                    <p class="philosophy-card-text">
+                        아름다운 시계를 소유하며 즐기는 것은 매우 좋은 취미이자 삶의 '원동력'입니다. 거래를 떠나서, 한 사람과 또 다른 사람이 만나는 것은 인생을 공유하며 깊어지는 '소중한 인연'입니다. 서울워치를 방문하실 때는 시계에 대한 애정과 관심이 있으신 분이라면 누구든 환영합니다. 소중한 시간을 내주셔서, 서울워치에 방문해 주시는 만큼 가치 있는 아름다운 시계로 보답하여 좋은 인연으로 발전하겠습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message Section -->
+    <section class="message-section">
+        <div class="container">
+            <div class="message-content">
+                <p class="message-text">
+                    세상은 넓고 소유하고 싶은 시계는 정말 많습니다.<br>
+                    시계는 삶의 원동력이며, 그 사람을 표현하는 상징성을 담고 있습니다.<br>
+                    시대를 초월하는 가치는 영원하며 특별합니다.<br>
+                    감동과 재미가 넘치는 서울워치에 오신 것을 진심으로 환영합니다.
+                </p>
+                <div class="message-signature">
+                    <p>가치 있는 시계의 시작</p>
+                    <span class="name">서울워치 권태영</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-header">
+                <span class="section-label">Seoul Watch</span>
+                <h2 class="section-title">Contact <span class="highlight">Us</span></h2>
+            </div>
+
+            <p class="contact-intro">
+                If you have any questions about our products, please feel free to contact us via Instagram, E-mail, Whatsapp, Kakaotalk etc.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </div>
+                    <p class="contact-label">Instagram</p>
+                    <p class="contact-value"><a href="https://instagram.com/seoulwatch_" target="_blank">Seoulwatch</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                        </svg>
+                    </div>
+                    <p class="contact-label">Kakaotalk</p>
+                    <p class="contact-value">Seoulwatch</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <p class="contact-label">E-mail</p>
+                    <p class="contact-value"><a href="mailto:vintage3445@naver.com">vintage3445@naver.com</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                    </div>
+                    <p class="contact-label">Whatsapp</p>
+                    <p class="contact-value"><a href="https://wa.me/821043340440" target="_blank">+82 10 4334 0440</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="other/로고/로고.png" alt="Seoul Watch">
+                    </a>
+                    <p class="footer-tagline">Curating timeless luxury since 2020</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Shop</h4>
+                        <a href="all-watches.html">All Watches</a>
+                        <a href="all-watches.html">New Arrivals</a>
+                        <a href="all-watches.html">By Brand</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Company</h4>
+                        <a href="about-us.html">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="https://blog.naver.com/vintage3445" target="_blank">Blog</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Support</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Shipping</a>
+                        <a href="#">Returns</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 Seoul Watch. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator"></span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-header">
+            <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="브랜드, 모델명으로 검색...">
+            </div>
+            <button class="search-modal-close" id="searchClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="search-modal-body" id="searchResults">
+        </div>
+    </div>
+</body>
+</html>

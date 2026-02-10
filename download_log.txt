@@ -1,0 +1,106 @@
+Processing 747 products...
+Progress: 10/747 (1%) - ETA: 2.7 min
+Progress: 20/747 (2%) - ETA: 3.4 min
+Progress: 30/747 (4%) - ETA: 4.3 min
+Progress: 40/747 (5%) - ETA: 4.7 min
+Progress: 50/747 (6%) - ETA: 5.1 min
+Progress: 60/747 (8%) - ETA: 5.3 min
+Progress: 70/747 (9%) - ETA: 5.4 min
+Progress: 80/747 (10%) - ETA: 5.4 min
+Progress: 90/747 (12%) - ETA: 5.5 min
+Progress: 100/747 (13%) - ETA: 5.6 min
+Progress: 110/747 (14%) - ETA: 5.5 min
+Progress: 120/747 (16%) - ETA: 5.5 min
+Progress: 130/747 (17%) - ETA: 5.4 min
+Progress: 140/747 (18%) - ETA: 5.4 min
+Progress: 150/747 (20%) - ETA: 5.3 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-7.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-7.jpeg
+Progress: 160/747 (21%) - ETA: 5.5 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-8.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-8.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-9.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-9.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-10.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-10.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-11.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-11.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-12.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-12.jpeg
+Progress: 170/747 (22%) - ETA: 5.8 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-5.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-5.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-6.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-6.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-7.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-7.jpeg
+Progress: 180/747 (24%) - ETA: 5.9 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-1.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-1.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-2.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-2.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-3.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-3.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-4.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-4.jpeg
+Progress: 190/747 (25%) - ETA: 6.2 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/22.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/22.jpeg
+Progress: 200/747 (26%) - ETA: 6.1 min
+Progress: 210/747 (28%) - ETA: 6.0 min
+Progress: 220/747 (29%) - ETA: 5.8 min
+Progress: 230/747 (30%) - ETA: 5.7 min
+Progress: 240/747 (32%) - ETA: 5.6 min
+Progress: 250/747 (33%) - ETA: 5.4 min
+Progress: 260/747 (34%) - ETA: 5.3 min
+Progress: 270/747 (36%) - ETA: 5.2 min
+Progress: 280/747 (37%) - ETA: 5.1 min
+Progress: 290/747 (38%) - ETA: 5.0 min
+Progress: 300/747 (40%) - ETA: 4.8 min
+Progress: 310/747 (41%) - ETA: 4.6 min
+Progress: 320/747 (42%) - ETA: 4.5 min
+Progress: 330/747 (44%) - ETA: 4.4 min
+Progress: 340/747 (45%) - ETA: 4.3 min
+Progress: 350/747 (46%) - ETA: 4.1 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-13.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-13.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-14.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-14.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-15.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-15.jpeg
+Progress: 360/747 (48%) - ETA: 4.1 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-5.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-5.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-8.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-8.jpeg
+Progress: 370/747 (49%) - ETA: 4.0 min
+Progress: 380/747 (50%) - ETA: 3.9 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/2.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/2.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/17.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/17.jpeg
+Progress: 390/747 (52%) - ETA: 3.8 min
+Progress: 400/747 (53%) - ETA: 3.7 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-6.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-6.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/42-7.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/42-7.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-9.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-9.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-16.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-16.jpeg
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-10.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-10.jpeg
+Progress: 410/747 (54%) - ETA: 3.7 min
+Progress: 420/747 (56%) - ETA: 3.5 min
+Progress: 430/747 (57%) - ETA: 3.4 min
+Progress: 440/747 (58%) - ETA: 3.3 min
+Progress: 450/747 (60%) - ETA: 3.2 min
+Progress: 460/747 (61%) - ETA: 3.1 min
+Progress: 470/747 (62%) - ETA: 2.9 min
+Progress: 480/747 (64%) - ETA: 2.8 min
+Progress: 490/747 (65%) - ETA: 2.7 min
+Progress: 500/747 (66%) - ETA: 2.6 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/49-17.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/49-17.jpeg
+Progress: 510/747 (68%) - ETA: 2.5 min
+Error downloading http://seoulwatch.kr/wp-content/uploads/2025/12/47-11.jpeg: 404 Client Error: Not Found for url: http://seoulwatch.kr/wp-content/uploads/2025/12/47-11.jpeg
+Progress: 520/747 (69%) - ETA: 2.4 min
+Progress: 530/747 (70%) - ETA: 2.3 min
+Progress: 540/747 (72%) - ETA: 2.2 min
+Progress: 550/747 (73%) - ETA: 2.1 min
+Progress: 560/747 (74%) - ETA: 2.0 min
+Progress: 570/747 (76%) - ETA: 1.9 min
+Progress: 580/747 (77%) - ETA: 1.8 min
+Progress: 590/747 (78%) - ETA: 1.6 min
+Progress: 600/747 (80%) - ETA: 1.5 min
+Progress: 610/747 (81%) - ETA: 1.4 min
+Progress: 620/747 (82%) - ETA: 1.3 min
+Progress: 630/747 (84%) - ETA: 1.2 min
+Progress: 640/747 (85%) - ETA: 1.1 min
+Progress: 650/747 (87%) - ETA: 1.0 min
+Progress: 660/747 (88%) - ETA: 0.9 min
+Progress: 670/747 (89%) - ETA: 0.8 min
+Progress: 680/747 (91%) - ETA: 0.7 min
+Progress: 690/747 (92%) - ETA: 0.6 min
+Progress: 700/747 (93%) - ETA: 0.5 min
+Progress: 710/747 (95%) - ETA: 0.4 min
+Progress: 720/747 (96%) - ETA: 0.3 min
+Progress: 730/747 (97%) - ETA: 0.2 min
+Progress: 740/747 (99%) - ETA: 0.1 min
+
+Completed! Total time: 7.8 minutes

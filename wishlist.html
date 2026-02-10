@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>찜 목록 - 서울워치</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=36">
+    <style>
+        .cursor, .cursor-dot {
+            display: none !important;
+        }
+
+        .wishlist-page {
+            min-height: 100vh;
+            padding-top: 120px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .wishlist-header h1 {
+            font-size: 42px;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .wishlist-header p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .wishlist-count {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-top: 16px;
+        }
+
+        /* Product Grid */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .wishlist-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wishlist-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .wishlist-item-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #0a0a0a;
+        }
+
+        .wishlist-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .wishlist-item:hover .wishlist-item-image img {
+            transform: scale(1.08);
+        }
+
+        .wishlist-item-remove {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-item:hover .wishlist-item-remove {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .wishlist-item-remove:hover {
+            background: rgba(220, 53, 69, 0.8);
+        }
+
+        .wishlist-item-remove svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+        }
+
+        .wishlist-item-info {
+            padding: 24px;
+        }
+
+        .wishlist-item-brand {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .wishlist-item-name {
+            font-size: 17px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .wishlist-item-name-en {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 16px;
+        }
+
+        .wishlist-item-price {
+            font-size: 18px;
+            font-weight: 500;
+            color: #d4af37;
+        }
+
+        .wishlist-item-price small {
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.4);
+            margin-right: 4px;
+        }
+
+        .wishlist-item-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .wishlist-item-btn {
+            flex: 1;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .wishlist-item-btn-primary {
+            background: #d4af37;
+            color: white;
+        }
+
+        .wishlist-item-btn-primary:hover {
+            background: #c9a42f;
+        }
+
+        .wishlist-item-btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .wishlist-item-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Empty State */
+        .wishlist-empty {
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        .wishlist-empty-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            stroke: rgba(255, 255, 255, 0.2);
+        }
+
+        .wishlist-empty h2 {
+            font-size: 24px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .wishlist-empty p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 40px;
+        }
+
+        .wishlist-empty-btn {
+            display: inline-block;
+            padding: 18px 40px;
+            background: white;
+            color: #0a0a0a;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .wishlist-empty-btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 10000;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast svg {
+            width: 18px;
+            height: 18px;
+            stroke: #d4af37;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .wishlist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .wishlist-page {
+                padding-top: 100px;
+            }
+
+            .wishlist-container {
+                padding: 24px;
+            }
+
+            .wishlist-header h1 {
+                font-size: 32px;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wishlist-item-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <nav class="nav nav-left" id="navLeft">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="all-watches.html" class="nav-link">ALL WATCHES</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">BY BRAND</a>
+                        <div class="mega-menu">
+                            <div class="mega-menu-inner">
+                                <a href="brand-patek-philippe.html" class="mega-menu-link">PATEK PHILIPPE</a>
+                                <a href="brand-audemars-piguet.html" class="mega-menu-link">AUDEMARS PIGUET</a>
+                                <a href="brand-vacheron-constantin.html" class="mega-menu-link">VACHERON CONSTANTIN</a>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">ROLEX</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-rolex.html">ALL ROLEX</a>
+                                        <a href="brand-rolex-mens.html">ROLEX MEN'S</a>
+                                        <a href="brand-rolex-womens.html">ROLEX WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-group">
+                                    <div class="mega-menu-group-title">CARTIER</div>
+                                    <div class="mega-menu-submenu">
+                                        <a href="brand-cartier.html">ALL CARTIER</a>
+                                        <a href="brand-cartier-mens.html">CARTIER MEN'S</a>
+                                        <a href="brand-cartier-womens.html">CARTIER WOMEN'S</a>
+                                    </div>
+                                </div>
+                                <a href="brand-piaget.html" class="mega-menu-link">PIAGET</a>
+                                <a href="brand-omega.html" class="mega-menu-link">OMEGA</a>
+                                <a href="brand-other.html" class="mega-menu-link">OTHER LUXURY BRANDS</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="archives.html" class="nav-link">ARCHIVES</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="about-us.html" class="nav-link">ABOUT US</a>
+                    </li>
+                    <li class="nav-item mobile-only">
+                        <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="index.html" class="logo">
+                <img src="other/로고/로고.png" alt="Seoul Watch">
+            </a>
+            <div class="header-right">
+                <nav class="nav nav-right" id="navRight">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="about-us.html" class="nav-link">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://blog.naver.com/vintage3445" target="_blank" rel="noopener noreferrer" class="nav-link">BLOG</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="header-icons">
+                    <a href="wishlist.html" class="header-icon active" aria-label="Wishlist">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="header-icon" aria-label="Search">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="header-icon" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Wishlist Content -->
+    <main class="wishlist-page">
+        <div class="wishlist-container">
+            <div class="wishlist-header">
+                <h1>찜 목록</h1>
+                <p>관심 있는 시계들을 모아보세요</p>
+                <div class="wishlist-count" id="wishlistCount">0개의 상품</div>
+            </div>
+
+            <div id="wishlistContent">
+                <div class="wishlist-empty">
+                    <svg class="wishlist-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                    <h2>찜 목록이 비어있습니다</h2>
+                    <p>마음에 드는 시계를 찾아 하트 버튼을 눌러보세요</p>
+                    <a href="all-watches.html" class="wishlist-empty-btn">시계 둘러보기</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 6L9 17l-5-5"/>
+        </svg>
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="other/로고/로고.png" alt="Seoul Watch">
+                    </a>
+                    <p class="footer-tagline">Curating timeless luxury since 2020</p>
+                </div>
+                <div class="footer-nav">
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Shop</h4>
+                        <a href="all-watches.html">All Watches</a>
+                        <a href="all-watches.html">New Arrivals</a>
+                        <a href="all-watches.html">By Brand</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Company</h4>
+                        <a href="about-us.html">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="https://blog.naver.com/vintage3445">Blog</a>
+                    </div>
+                    <div class="footer-nav-group">
+                        <h4 class="footer-nav-title">Support</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Shipping</a>
+                        <a href="#">Returns</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">&copy; 2026 Seoul Watch. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="separator"></span>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        let allProducts = [];
+
+        // Load all products
+        async function loadProducts() {
+            try {
+                let response = await fetch('data/products.json');
+                if (!response.ok) {
+                    response = await fetch('/seoulwatch/data/products.json');
+                }
+                const data = await response.json();
+                allProducts = data.products;
+                renderWishlist();
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function getWishlist() {
+            const wishlist = localStorage.getItem('seoulwatch_wishlist');
+            return wishlist ? JSON.parse(wishlist) : [];
+        }
+
+        function saveWishlist(wishlist) {
+            localStorage.setItem('seoulwatch_wishlist', JSON.stringify(wishlist));
+        }
+
+        function formatPrice(price) {
+            return price.toLocaleString('ko-KR');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        function renderWishlist() {
+            const wishlist = getWishlist();
+            const content = document.getElementById('wishlistContent');
+            const countEl = document.getElementById('wishlistCount');
+
+            // Filter products that are in wishlist
+            const wishlistProducts = allProducts.filter(p => wishlist.includes(p.id));
+
+            countEl.textContent = `${wishlistProducts.length}개의 상품`;
+
+            if (wishlistProducts.length === 0) {
+                content.innerHTML = `
+                    <div class="wishlist-empty">
+                        <svg class="wishlist-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <h2>찜 목록이 비어있습니다</h2>
+                        <p>마음에 드는 시계를 찾아 하트 버튼을 눌러보세요</p>
+                        <a href="all-watches.html" class="wishlist-empty-btn">시계 둘러보기</a>
+                    </div>
+                `;
+                return;
+            }
+
+            content.innerHTML = `
+                <div class="wishlist-grid">
+                    ${wishlistProducts.map(product => `
+                        <div class="wishlist-item" data-id="${product.id}">
+                            <div class="wishlist-item-image">
+                                <a href="product.html?id=${product.id}">
+                                    <img src="${product.image}" alt="${product.name}">
+                                </a>
+                                <button class="wishlist-item-remove" onclick="removeFromWishlist('${product.id}')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="18" y1="6" x2="6" y2="18"/>
+                                        <line x1="6" y1="6" x2="18" y2="18"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="wishlist-item-info">
+                                <p class="wishlist-item-brand">${product.brand}</p>
+                                <h3 class="wishlist-item-name">${product.name}</h3>
+                                <p class="wishlist-item-name-en">${product.nameEn || ''}</p>
+                                <p class="wishlist-item-price">
+                                    <small>KRW</small>${formatPrice(product.price)}
+                                </p>
+                                <div class="wishlist-item-actions">
+                                    <a href="checkout.html?id=${product.id}" class="wishlist-item-btn wishlist-item-btn-primary">구매하기</a>
+                                    <a href="product.html?id=${product.id}" class="wishlist-item-btn wishlist-item-btn-secondary">상세보기</a>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function removeFromWishlist(productId) {
+            const wishlist = getWishlist();
+            const index = wishlist.indexOf(productId);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                saveWishlist(wishlist);
+
+                // Animate removal
+                const item = document.querySelector(`.wishlist-item[data-id="${productId}"]`);
+                if (item) {
+                    item.style.transform = 'scale(0.8)';
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        renderWishlist();
+                    }, 300);
+                }
+
+                showToast('찜 목록에서 제거되었습니다');
+            }
+        }
+
+        // Initialize
+        loadProducts();
+    </script>
+</body>
+    <!-- Search Modal -->
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-header">
+            <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="브랜드, 모델명으로 검색...">
+            </div>
+            <button class="search-modal-close" id="searchClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="search-modal-body" id="searchResults">
+        </div>
+    </div>
+</body>
+</html>
