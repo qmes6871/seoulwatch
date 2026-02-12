@@ -168,6 +168,20 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        .product-badge.sold {
+            background: rgba(180, 40, 40, 0.2);
+            border-color: rgba(180, 40, 40, 0.3);
+        }
+
+        .product-badge.sold .product-badge-dot {
+            background: #b42828;
+            animation: none;
+        }
+
+        .product-badge.sold .product-badge-text {
+            color: #e85555;
+        }
+
         /* Brand */
         .product-brand {
             font-size: 13px;
@@ -296,6 +310,17 @@
 
         .btn-buy:hover {
             background: #c9a42f;
+        }
+
+        .btn-sold {
+            background: #666;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .btn-sold:hover {
+            background: #666;
+            transform: none;
         }
 
         .btn-secondary {
@@ -888,6 +913,7 @@
 
         function renderProduct(product) {
             const content = document.getElementById('productContent');
+            const isSold = product.status === 'archive';
 
             // Extract specs from CSV data or use defaults
             const specs = {
@@ -928,9 +954,9 @@
                     <!-- Product Info -->
                     <div class="product-info-section">
                         <div class="product-info-inner">
-                            <div class="product-badge">
+                            <div class="product-badge ${isSold ? 'sold' : ''}">
                                 <span class="product-badge-dot"></span>
-                                <span class="product-badge-text">AVAILABLE NOW</span>
+                                <span class="product-badge-text">${isSold ? 'SOLD OUT' : 'AVAILABLE NOW'}</span>
                             </div>
 
                             <p class="product-brand">${product.brand}</p>
@@ -967,6 +993,14 @@
                             </div>
 
                             <div class="product-actions">
+                                ${isSold ? `
+                                <button class="btn-primary btn-sold" disabled>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M18 6L6 18M6 6l12 12"/>
+                                    </svg>
+                                    판매 완료
+                                </button>
+                                ` : `
                                 <button class="btn-primary btn-buy" onclick="goToCheckout('${product.id}')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
@@ -975,6 +1009,7 @@
                                     </svg>
                                     구매하기
                                 </button>
+                                `}
                                 <button class="btn-secondary" onclick="toggleWishlist(this)">
                                     <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
                                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
@@ -1019,12 +1054,21 @@
                 <!-- CTA Section -->
                 <section class="product-cta-section">
                     <div class="product-cta-content">
+                        ${isSold ? `
+                        <h3>이 상품은 판매가 완료되었습니다</h3>
+                        <p>비슷한 다른 시계를 찾고 계신가요? 저희 컬렉션에서 다양한 명품 시계를 만나보세요.</p>
+                        <div class="cta-buttons">
+                            <a href="all-watches.html" class="btn-cta btn-cta-primary">다른 시계 보기</a>
+                            <a href="archives.html" class="btn-cta btn-cta-secondary">판매 완료 상품</a>
+                        </div>
+                        ` : `
                         <h3>관심이 있으신가요?</h3>
                         <p>이 시계에 대해 더 알고 싶으시거나 구매를 원하시면 지금 바로 주문해 주세요. 전문 상담원이 친절하게 안내해 드립니다.</p>
                         <div class="cta-buttons">
                             <button class="btn-cta btn-cta-primary" onclick="goToCheckout('${product.id}')">구매하기</button>
                             <a href="all-watches.html" class="btn-cta btn-cta-secondary">다른 시계 보기</a>
                         </div>
+                        `}
                     </div>
                 </section>
             `;

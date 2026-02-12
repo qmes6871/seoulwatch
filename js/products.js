@@ -36,14 +36,23 @@ class ProductLoader {
     }
 
     filterByCategory(category) {
+        // Archives 페이지: status가 "archive"인 상품만 표시
+        if (category === 'archives') {
+            return this.products.filter(product => product.status === 'archive');
+        }
         return this.products.filter(product => product.category.includes(category));
     }
 
     createProductCard(product, delay = 1) {
+        const soldBadge = product.status === 'archive'
+            ? '<span class="archive-badge sold">SOLD</span>'
+            : '';
+
         return `
             <div class="product-card reveal" data-delay="${delay}">
                 <a href="product.html?id=${product.id}" class="product-link">
                     <div class="product-image">
+                        ${soldBadge}
                         <img src="${product.image}" alt="${product.name}">
                     </div>
                     <div class="product-info">
