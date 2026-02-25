@@ -28,7 +28,20 @@
         .product-gallery-section {
             position: relative;
             display: flex;
+            flex-direction: row;
+        }
+
+        /* Thumbnails - Left Side Vertical */
+        .product-gallery-thumbs {
+            display: flex;
             flex-direction: column;
+            gap: 4px;
+            padding: 100px 4px 4px 4px;
+            background: #0a0a0a;
+            width: 80px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            order: -1;
         }
 
         .product-gallery-main {
@@ -79,33 +92,26 @@
             height: 16px;
         }
 
-        /* Thumbnails */
-        .product-gallery-thumbs {
-            display: flex;
-            gap: 4px;
-            padding: 4px;
-            background: #0a0a0a;
-        }
-
         .product-gallery-thumb {
-            flex: 1;
+            width: 100%;
             aspect-ratio: 1;
             cursor: pointer;
             overflow: hidden;
             position: relative;
             opacity: 0.5;
             transition: opacity 0.3s ease;
+            flex-shrink: 0;
         }
 
         .product-gallery-thumb::after {
             content: '';
             position: absolute;
+            top: 0;
             bottom: 0;
-            left: 0;
             right: 0;
-            height: 3px;
+            width: 3px;
             background: white;
-            transform: scaleX(0);
+            transform: scaleY(0);
             transition: transform 0.3s ease;
         }
 
@@ -115,7 +121,7 @@
         }
 
         .product-gallery-thumb.active::after {
-            transform: scaleX(1);
+            transform: scaleY(1);
         }
 
         .product-gallery-thumb img {
@@ -192,7 +198,7 @@
 
         /* Title */
         .product-title {
-            font-size: 42px;
+            font-size: 24px;
             font-weight: 300;
             line-height: 1.2;
             color: white;
@@ -414,7 +420,7 @@
         }
 
         .product-description-content p {
-            font-size: 16px;
+            font-size: 19px;
             line-height: 2;
             color: #444;
             margin-bottom: 20px;
@@ -654,7 +660,7 @@
             }
 
             .product-title {
-                font-size: 32px;
+                font-size: 24px;
             }
 
             .product-price {
@@ -669,10 +675,50 @@
         @media (max-width: 640px) {
             .product-hero {
                 padding-top: 90px;
+                overflow-x: hidden;
             }
 
             .product-gallery-section {
+                height: auto;
+                flex-direction: column;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+            .product-gallery-main {
                 height: 50vh;
+            }
+
+            .product-gallery-thumbs {
+                width: 100%;
+                max-width: 100%;
+                flex-direction: row;
+                overflow-x: auto;
+                overflow-y: hidden;
+                order: 0;
+                padding: 8px;
+                gap: 6px;
+                box-sizing: border-box;
+            }
+
+            .product-gallery-thumb {
+                width: 48px;
+                height: 48px;
+                flex-shrink: 0;
+            }
+
+            .product-gallery-thumb::after {
+                top: auto;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: auto;
+                height: 3px;
+                transform: scaleX(0);
+            }
+
+            .product-gallery-thumb.active::after {
+                transform: scaleX(1);
             }
 
             .product-info-section {
@@ -680,7 +726,7 @@
             }
 
             .product-title {
-                font-size: 26px;
+                font-size: 22px;
             }
 
             .product-price {
@@ -714,6 +760,9 @@
     </style>
 </head>
 <body>
+    <!-- Google Translate Element (hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
@@ -786,6 +835,25 @@
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
                     </a>
+                    <div class="lang-selector">
+                        <button class="lang-btn" aria-label="Language">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </button>
+                        <div class="lang-dropdown">
+                            <button class="lang-option active" onclick="changeLanguage('ko')">
+                                <span class="flag">🇰🇷</span> 한국어
+                            </button>
+                            <button class="lang-option" onclick="changeLanguage('en')">
+                                <span class="flag">🇺🇸</span> English
+                            </button>
+                            <button class="lang-option" onclick="changeLanguage('ja')">
+                                <span class="flag">🇯🇵</span> 日本語
+                            </button>
+                        </div>
+                    </div>
                     <a href="#" class="header-icon" aria-label="Search">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <circle cx="11" cy="11" r="8"/>

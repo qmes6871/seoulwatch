@@ -568,9 +568,109 @@
                 height: 50vh;
             }
         }
+
+        /* ===== Press Section ===== */
+        .press-section {
+            padding: 8rem 2rem;
+            background: var(--bg-dark);
+            position: relative;
+        }
+
+        .press-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+
+        .press-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .press-header .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        .press-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .press-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .press-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .press-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .press-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .press-item:hover img {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 1024px) {
+            .press-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .press-item:last-child {
+                grid-column: span 2;
+                max-width: 50%;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .press-section {
+                padding: 5rem 1.5rem;
+            }
+
+            .press-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .press-item:last-child {
+                grid-column: span 1;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Google Translate Element (hidden) -->
+    <div id="google_translate_element" style="display:none;"></div>
+
     <!-- Custom Cursor -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursorDot"></div>
@@ -645,6 +745,25 @@
                             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
                         </svg>
                     </a>
+                    <div class="lang-selector">
+                        <button class="lang-btn" aria-label="Language">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </button>
+                        <div class="lang-dropdown">
+                            <button class="lang-option active" onclick="changeLanguage('ko')">
+                                <span class="flag">🇰🇷</span> 한국어
+                            </button>
+                            <button class="lang-option" onclick="changeLanguage('en')">
+                                <span class="flag">🇺🇸</span> English
+                            </button>
+                            <button class="lang-option" onclick="changeLanguage('ja')">
+                                <span class="flag">🇯🇵</span> 日本語
+                            </button>
+                        </div>
+                    </div>
                     <a href="#" class="header-icon" aria-label="Search">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                             <circle cx="11" cy="11" r="8"/>
@@ -772,6 +891,32 @@
                 <div class="message-signature">
                     <p>가치 있는 시계의 시작</p>
                     <span class="name">서울워치 권태영</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Press Section -->
+    <section class="press-section">
+        <div class="container">
+            <div class="press-header">
+                <span class="section-label">Media Coverage</span>
+                <h2 class="section-title">Press & <span class="highlight">News</span></h2>
+            </div>
+
+            <p class="press-intro">
+                서울워치가 현대백화점 더현대 서울에서 진행한 팝업 행사가 주요 언론에 소개되었습니다.
+            </p>
+
+            <div class="press-grid">
+                <div class="press-item">
+                    <img src="other/현대백화점-언론-팝업-1-832x1024.jpg" alt="현대백화점 팝업 언론 보도 1">
+                </div>
+                <div class="press-item">
+                    <img src="other/현대백화점-언론-팝업-2-1-757x1024.jpg" alt="현대백화점 팝업 언론 보도 2">
+                </div>
+                <div class="press-item">
+                    <img src="other/현대백화점-언론-팝업-3.jpg" alt="현대백화점 팝업 언론 보도 3">
                 </div>
             </div>
         </div>
