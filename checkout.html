@@ -598,7 +598,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2"></script>
     <script>
         // Get product ID from URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -614,9 +614,11 @@
             }
 
             try {
-                let response = await fetch('data/products.json');
+                // Cache busting with timestamp
+                const cacheBuster = `?t=${Date.now()}`;
+                let response = await fetch('data/products.json' + cacheBuster);
                 if (!response.ok) {
-                    response = await fetch('/seoulwatch/data/products.json');
+                    response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
                 }
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);

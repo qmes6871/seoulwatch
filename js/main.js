@@ -455,9 +455,11 @@ function initSearch() {
     // Load products data
     async function loadProducts() {
         try {
-            let response = await fetch('data/products.json');
+            // Cache busting with timestamp
+            const cacheBuster = `?t=${Date.now()}`;
+            let response = await fetch('data/products.json' + cacheBuster);
             if (!response.ok) {
-                response = await fetch('/seoulwatch/data/products.json');
+                response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
             }
             const data = await response.json();
             allProducts = data.products || [];

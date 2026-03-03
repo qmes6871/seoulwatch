@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product - Seoul Watch Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <!-- Quill Editor -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <style>
+        .ql-container {
+            font-size: 16px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .ql-editor {
+            min-height: 350px;
+        }
+        .ql-toolbar {
+            background: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+            border-color: #e0e0e0;
+        }
+        .ql-container {
+            border-radius: 0 0 8px 8px;
+            border-color: #e0e0e0;
+        }
+        .ql-editor {
+            color: #333;
+        }
+        .ql-editor p, .ql-editor div, .ql-editor span {
+            color: inherit;
+        }
+        #descriptionHtmlRaw {
+            color: #333;
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-logo">
+                    <img src="../other/로고/로고.png" alt="Seoul Watch">
+                </a>
+                <span class="sidebar-badge">ADMIN</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="products.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                    </svg>
+                    <span>Products</span>
+                </a>
+                <a href="product-edit.html" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span>Add Product</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../index.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                    <span>View Site</span>
+                </a>
+                <button onclick="logout()" class="nav-item logout-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                    </svg>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-left">
+                    <a href="products.html" class="back-link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                        Back to Products
+                    </a>
+                    <h1 id="pageTitle">Add Product</h1>
+                </div>
+                <div class="header-right">
+                    <button type="button" onclick="saveProduct()" class="btn-primary" id="saveBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 13l4 4L19 7"/>
+                        </svg>
+                        Save Product
+                    </button>
+                </div>
+            </header>
+
+            <form id="productForm" class="product-form">
+                <div class="form-grid">
+                    <!-- Left Column - Basic Info -->
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h3 class="section-title">Basic Information</h3>
+
+                            <div class="form-group">
+                                <label for="brand">Brand *</label>
+                                <select id="brand" name="brand" required>
+                                    <option value="">Select Brand</option>
+                                    <option value="ROLEX">ROLEX</option>
+                                    <option value="PATEK PHILIPPE">PATEK PHILIPPE</option>
+                                    <option value="AUDEMARS PIGUET">AUDEMARS PIGUET</option>
+                                    <option value="CARTIER">CARTIER</option>
+                                    <option value="OMEGA">OMEGA</option>
+                                    <option value="IWC">IWC</option>
+                                    <option value="PANERAI">PANERAI</option>
+                                    <option value="VACHERON CONSTANTIN">VACHERON CONSTANTIN</option>
+                                    <option value="HUBLOT">HUBLOT</option>
+                                    <option value="RICHARD MILLE">RICHARD MILLE</option>
+                                    <option value="BREITLING">BREITLING</option>
+                                    <option value="TUDOR">TUDOR</option>
+                                    <option value="TAG HEUER">TAG HEUER</option>
+                                    <option value="JAEGER LECOULTRE">JAEGER LECOULTRE</option>
+                                    <option value="CHOPARD">CHOPARD</option>
+                                    <option value="OTHER">OTHER</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Product Name (Korean) *</label>
+                                <input type="text" id="name" name="name" required
+                                       placeholder="e.g., 서브마리너 데이트 41mm 블랙">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nameEn">Product Name (English)</label>
+                                <input type="text" id="nameEn" name="nameEn"
+                                       placeholder="e.g., Submariner Date 41mm Black">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="sku">SKU / Product ID *</label>
+                                    <input type="text" id="sku" name="sku" required
+                                           placeholder="e.g., 126610LN">
+                                </div>
+                                <div class="form-group">
+                                    <label for="price">Price (KRW) *</label>
+                                    <input type="number" id="price" name="price" required min="0"
+                                           placeholder="e.g., 15000000">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" name="description" rows="4"
+                                          placeholder="Product description..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3 class="section-title">Category & Status</h3>
+
+                            <div class="form-group">
+                                <label>Category</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="rolex"> Rolex
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="patek"> Patek Philippe
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="audemars"> Audemars Piguet
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="vacheron-constantin"> Vacheron Constantin
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="cartier"> Cartier
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="piaget"> Piaget
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="omega"> Omega
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="category" value="other"> Other
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select id="gender" name="gender">
+                                        <option value="unisex">Unisex</option>
+                                        <option value="men">Men</option>
+                                        <option value="women">Women</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select id="status" name="status">
+                                        <option value="active">Active</option>
+                                        <option value="archive">Archived (Sold)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Images -->
+                    <div class="form-column">
+                        <div class="form-section">
+                            <h3 class="section-title">Product Images</h3>
+                            <p class="section-hint">Upload up to 10 images. Drag to reorder.</p>
+
+                            <div class="image-upload-zone" id="uploadZone">
+                                <input type="file" id="imageInput" accept="image/*" multiple hidden>
+                                <div class="upload-prompt">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <p>Drag & drop images here or <span>browse</span></p>
+                                    <span class="upload-hint">PNG, JPG, WEBP up to 16MB</span>
+                                </div>
+                            </div>
+
+                            <div class="image-preview-grid" id="imagePreview"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Width - Product Detail Description -->
+                <div class="form-section" style="margin-top: 24px;">
+                    <h3 class="section-title">상세 정보 (Product Details)</h3>
+                    <p class="section-hint">상품 상세 페이지에 표시될 내용입니다.</p>
+
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>
+                            <input type="radio" name="editorMode" value="visual" checked onchange="toggleEditorMode('visual')"> 비주얼 에디터
+                        </label>
+                        <label style="margin-left: 16px;">
+                            <input type="radio" name="editorMode" value="html" onchange="toggleEditorMode('html')"> HTML 직접 편집
+                        </label>
+                    </div>
+
+                    <div id="visualEditorWrapper">
+                        <div id="descriptionEditor" style="height: 400px; background: white; border-radius: 8px;"></div>
+                    </div>
+
+                    <div id="htmlEditorWrapper" style="display: none;">
+                        <textarea id="descriptionHtmlRaw" style="width: 100%; height: 400px; font-family: monospace; font-size: 13px; padding: 12px; border: 1px solid #e0e0e0; border-radius: 8px; resize: vertical;"></textarea>
+                    </div>
+
+                    <button type="button" onclick="previewDescription()" class="btn-secondary" style="margin-top: 12px;">
+                        미리보기
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script>
+        // Check authentication
+        checkAuth();
+
+        // Initialize Quill Editor
+        const quill = new Quill('#descriptionEditor', {
+            theme: 'snow',
+            placeholder: '상품 상세 정보를 입력하세요...',
+            modules: {
+                toolbar: [
+                    [{ 'header': [1, 2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    [{ 'align': [] }],
+                    ['link', 'image'],
+                    ['clean']
+                ]
+            }
+        });
+
+        // State
+        let isEditing = false;
+        let productId = null;
+        let uploadedImages = [];
+
+        // Check if editing existing product
+        const urlParams = new URLSearchParams(window.location.search);
+        productId = urlParams.get('id');
+
+        if (productId) {
+            isEditing = true;
+            document.getElementById('pageTitle').textContent = 'Edit Product';
+            loadProduct(productId);
+        }
+
+        async function loadProduct(id) {
+            try {
+                const product = await apiRequest(`/seoulwatch/api/products/${id}`);
+
+                // Populate form
+                document.getElementById('brand').value = product.brand;
+                document.getElementById('name').value = product.name;
+                document.getElementById('nameEn').value = product.nameEn || '';
+                document.getElementById('sku').value = product.sku;
+                document.getElementById('price').value = product.price;
+                document.getElementById('description').value = product.description || '';
+                document.getElementById('gender').value = product.gender || 'unisex';
+                document.getElementById('status').value = product.status || 'active';
+
+                // Set categories
+                const categories = product.category || [];
+                document.querySelectorAll('input[name="category"]').forEach(cb => {
+                    cb.checked = categories.includes(cb.value);
+                });
+
+                // Load images
+                uploadedImages = product.images || [];
+                if (product.image && !uploadedImages.includes(product.image)) {
+                    uploadedImages.unshift(product.image);
+                }
+                renderImagePreviews();
+
+                // Load description HTML into both editors
+                if (product.descriptionHtml) {
+                    console.log('Loading descriptionHtml, length:', product.descriptionHtml.length);
+                    // Store raw HTML in textarea
+                    document.getElementById('descriptionHtmlRaw').value = product.descriptionHtml;
+                    // Try to load into Quill
+                    try {
+                        quill.clipboard.dangerouslyPasteHTML(product.descriptionHtml);
+                    } catch (e) {
+                        console.error('Quill paste error:', e);
+                    }
+                }
+
+            } catch (error) {
+                console.error('Failed to load product:', error);
+                showToast('Failed to load product', 'error');
+            }
+        }
+
+        // Image upload handling
+        const uploadZone = document.getElementById('uploadZone');
+        const imageInput = document.getElementById('imageInput');
+
+        uploadZone.addEventListener('click', () => imageInput.click());
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('dragover');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('dragover');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        imageInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        async function handleFiles(files) {
+            const brand = document.getElementById('brand').value || 'unknown';
+            const sku = document.getElementById('sku').value || Date.now().toString();
+
+            for (let i = 0; i < files.length && uploadedImages.length < 10; i++) {
+                const file = files[i];
+                if (!file.type.startsWith('image/')) continue;
+
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('brand', brand);
+                formData.append('sku', sku);
+                formData.append('index', uploadedImages.length);
+
+                try {
+                    showToast('Uploading image...', 'info');
+                    const result = await apiRequest('/seoulwatch/api/images/upload', {
+                        method: 'POST',
+                        body: formData,
+                        isFormData: true
+                    });
+
+                    uploadedImages.push(result.url);
+                    renderImagePreviews();
+                    showToast('Image uploaded', 'success');
+                } catch (error) {
+                    console.error('Upload failed:', error);
+                    showToast('Failed to upload image', 'error');
+                }
+            }
+        }
+
+        function renderImagePreviews() {
+            const container = document.getElementById('imagePreview');
+
+            if (uploadedImages.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = uploadedImages.map((url, index) => `
+                <div class="image-preview-item" draggable="true" data-index="${index}">
+                    <img src="${url}" alt="Product image ${index + 1}">
+                    <div class="image-preview-overlay">
+                        <span class="image-order">${index + 1}</span>
+                        <button type="button" onclick="removeImage(${index})" class="image-remove">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    ${index === 0 ? '<span class="main-badge">Main</span>' : ''}
+                </div>
+            `).join('');
+
+            // Add drag and drop for reordering
+            initImageDragDrop();
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            renderImagePreviews();
+        }
+
+        function initImageDragDrop() {
+            const items = document.querySelectorAll('.image-preview-item');
+            let draggedItem = null;
+
+            items.forEach(item => {
+                item.addEventListener('dragstart', (e) => {
+                    draggedItem = item;
+                    item.classList.add('dragging');
+                });
+
+                item.addEventListener('dragend', () => {
+                    item.classList.remove('dragging');
+                    draggedItem = null;
+                });
+
+                item.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    if (draggedItem && draggedItem !== item) {
+                        const container = item.parentNode;
+                        const rect = item.getBoundingClientRect();
+                        const midpoint = rect.left + rect.width / 2;
+
+                        if (e.clientX < midpoint) {
+                            container.insertBefore(draggedItem, item);
+                        } else {
+                            container.insertBefore(draggedItem, item.nextSibling);
+                        }
+
+                        // Update array order
+                        updateImageOrder();
+                    }
+                });
+            });
+        }
+
+        function updateImageOrder() {
+            const items = document.querySelectorAll('.image-preview-item');
+            const newOrder = [];
+
+            items.forEach(item => {
+                const index = parseInt(item.dataset.index);
+                newOrder.push(uploadedImages[index]);
+            });
+
+            uploadedImages = newOrder;
+            renderImagePreviews();
+        }
+
+        // Save product
+        async function saveProduct() {
+            const form = document.getElementById('productForm');
+            const saveBtn = document.getElementById('saveBtn');
+
+            // Validate
+            const brand = document.getElementById('brand').value;
+            const name = document.getElementById('name').value;
+            const sku = document.getElementById('sku').value;
+            const price = document.getElementById('price').value;
+
+            if (!brand || !name || !sku || !price) {
+                showToast('Please fill in all required fields', 'error');
+                return;
+            }
+
+            // Gather categories
+            const categories = [];
+            document.querySelectorAll('input[name="category"]:checked').forEach(cb => {
+                categories.push(cb.value);
+            });
+
+            // Get description HTML from current editor mode
+            const editorMode = document.querySelector('input[name="editorMode"]:checked').value;
+            let descriptionHtml;
+            if (editorMode === 'html') {
+                descriptionHtml = document.getElementById('descriptionHtmlRaw').value;
+            } else {
+                descriptionHtml = quill.root.innerHTML;
+            }
+
+            // Build product data
+            const productData = {
+                brand,
+                name,
+                nameEn: document.getElementById('nameEn').value,
+                sku,
+                price: parseInt(price),
+                description: document.getElementById('description').value,
+                descriptionHtml: descriptionHtml !== '<p><br></p>' ? descriptionHtml : '',
+                gender: document.getElementById('gender').value,
+                status: document.getElementById('status').value,
+                category: categories,
+                images: uploadedImages,
+                image: uploadedImages[0] || ''
+            };
+
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span>Saving...</span>';
+
+            try {
+                if (isEditing) {
+                    await apiRequest(`/seoulwatch/api/products/${productId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(productData)
+                    });
+                    showToast('Product updated successfully', 'success');
+                } else {
+                    const result = await apiRequest('/seoulwatch/api/products', {
+                        method: 'POST',
+                        body: JSON.stringify(productData)
+                    });
+                    showToast('Product created successfully', 'success');
+
+                    // Redirect to edit page
+                    window.location.href = `product-edit.html?id=${result.id}`;
+                }
+            } catch (error) {
+                console.error('Save failed:', error);
+                showToast(error.message || 'Failed to save product', 'error');
+            }
+
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 13l4 4L19 7"/>
+                </svg>
+                Save Product
+            `;
+        }
+
+        // Auto-select category based on brand
+        document.getElementById('brand').addEventListener('change', (e) => {
+            const brand = e.target.value.toLowerCase();
+            const categoryMap = {
+                'rolex': 'rolex',
+                'patek philippe': 'patek',
+                'audemars piguet': 'audemars',
+                'vacheron constantin': 'vacheron-constantin',
+                'cartier': 'cartier',
+                'piaget': 'piaget',
+                'omega': 'omega'
+            };
+
+            // Uncheck all
+            document.querySelectorAll('input[name="category"]').forEach(cb => {
+                cb.checked = false;
+            });
+
+            // Check matching category
+            const category = categoryMap[brand];
+            if (category) {
+                const cb = document.querySelector(`input[name="category"][value="${category}"]`);
+                if (cb) cb.checked = true;
+            } else {
+                // Default to 'other'
+                const cb = document.querySelector(`input[name="category"][value="other"]`);
+                if (cb) cb.checked = true;
+            }
+        });
+
+        // Toggle between visual and HTML editor modes
+        function toggleEditorMode(mode) {
+            const visualWrapper = document.getElementById('visualEditorWrapper');
+            const htmlWrapper = document.getElementById('htmlEditorWrapper');
+            const htmlTextarea = document.getElementById('descriptionHtmlRaw');
+
+            if (mode === 'html') {
+                // Sync Quill content to textarea before switching
+                htmlTextarea.value = quill.root.innerHTML;
+                visualWrapper.style.display = 'none';
+                htmlWrapper.style.display = 'block';
+            } else {
+                // Sync textarea content to Quill before switching
+                try {
+                    quill.root.innerHTML = htmlTextarea.value;
+                } catch (e) {
+                    console.error('Error loading HTML to Quill:', e);
+                }
+                visualWrapper.style.display = 'block';
+                htmlWrapper.style.display = 'none';
+            }
+        }
+
+        // Preview description in new window
+        function previewDescription() {
+            const editorMode = document.querySelector('input[name="editorMode"]:checked').value;
+            let html;
+            if (editorMode === 'html') {
+                html = document.getElementById('descriptionHtmlRaw').value;
+            } else {
+                html = quill.root.innerHTML;
+            }
+
+            const previewWindow = window.open('', '_blank');
+            previewWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>상세 정보 미리보기</title>
+                    <style>
+                        body { font-family: 'Noto Sans KR', sans-serif; padding: 40px; max-width: 900px; margin: 0 auto; }
+                        img { max-width: 100%; height: auto; }
+                    </style>
+                </head>
+                <body>${html}</body>
+                </html>
+            `);
+            previewWindow.document.close();
+        }
+    </script>
+</body>
+</html>

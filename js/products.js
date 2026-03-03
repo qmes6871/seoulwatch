@@ -16,10 +16,12 @@ class ProductLoader {
         if (this.loaded) return this.products;
 
         try {
+            // Cache busting with timestamp
+            const cacheBuster = `?t=${Date.now()}`;
             // Try relative path first, then absolute
-            let response = await fetch('data/products.json');
+            let response = await fetch('data/products.json' + cacheBuster);
             if (!response.ok) {
-                response = await fetch('/seoulwatch/data/products.json');
+                response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
             }
             const data = await response.json();
             this.products = data.products;

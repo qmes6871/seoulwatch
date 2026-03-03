@@ -944,7 +944,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=2"></script>
     <script>
         // Get product ID from URL
         const urlParams = new URLSearchParams(window.location.search);
@@ -954,9 +954,11 @@
         // Load product data
         async function loadProduct() {
             try {
-                let response = await fetch('data/products.json');
+                // Cache busting with timestamp
+                const cacheBuster = `?t=${Date.now()}`;
+                let response = await fetch('data/products.json' + cacheBuster);
                 if (!response.ok) {
-                    response = await fetch('/seoulwatch/data/products.json');
+                    response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
                 }
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);
@@ -1011,7 +1013,7 @@
                         ${product.images && product.images.length > 1 ? `
                             <div class="product-gallery-thumbs">
                                 ${product.images.map((img, i) => `
-                                    <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" onclick="changeImage('${img}', this)">
+                                    <div class="product-gallery-thumb ${i === 0 ? 'active' : ''}" onmouseenter="handleThumbHover('${img}', this)" onclick="changeImage('${img}', this)">
                                         <img src="${img}" alt="${product.name}">
                                     </div>
                                 `).join('')}
@@ -1151,6 +1153,14 @@
                     <a href="all-watches.html">전체 상품 보기</a>
                 </div>
             `;
+        }
+
+        // PC에서 hover로 이미지 변경 (터치 장치 제외)
+        function handleThumbHover(src, thumb) {
+            // 터치 장치가 아닌 경우에만 hover로 이미지 변경
+            if (window.matchMedia('(hover: hover)').matches) {
+                changeImage(src, thumb);
+            }
         }
 
         function changeImage(src, thumb) {
