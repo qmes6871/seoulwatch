@@ -194,11 +194,23 @@
         loadBrands();
         loadProducts();
 
-        // Event listeners
-        document.getElementById('searchInput').addEventListener('input', debounce(loadProducts, 300));
-        document.getElementById('brandFilter').addEventListener('change', loadProducts);
-        document.getElementById('statusFilter').addEventListener('change', loadProducts);
-        document.getElementById('sortFilter').addEventListener('change', loadProducts);
+        // Event listeners - reset to page 1 when filters change
+        document.getElementById('searchInput').addEventListener('input', debounce(() => {
+            currentPage = 1;
+            loadProducts();
+        }, 300));
+        document.getElementById('brandFilter').addEventListener('change', () => {
+            currentPage = 1;
+            loadProducts();
+        });
+        document.getElementById('statusFilter').addEventListener('change', () => {
+            currentPage = 1;
+            loadProducts();
+        });
+        document.getElementById('sortFilter').addEventListener('change', () => {
+            currentPage = 1;
+            loadProducts();
+        });
 
         async function loadBrands() {
             try {

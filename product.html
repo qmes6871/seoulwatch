@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=36">
+    <link rel="stylesheet" href="css/style.css?v=43">
     <style>
         /* Product Detail - Modern 2026 Design */
 
@@ -968,6 +968,7 @@
                     renderProduct(product);
                     document.title = `${product.name} - 서울워치`;
                     setTimeout(initWishlistButton, 100);
+                    setTimeout(initSwipeGallery, 100);
                 } else {
                     renderNotFound();
                 }
@@ -1276,6 +1277,83 @@
                 closeLightbox();
             }
         });
+
+        // Mobile swipe functionality for gallery
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchEndX = 0;
+        let touchEndY = 0;
+        let isSwiping = false;
+        let currentImageIndex = 0;
+
+        function initSwipeGallery() {
+            const galleryMain = document.querySelector('.product-gallery-main');
+            if (!galleryMain) return;
+
+            // Remove onclick to handle click manually
+            galleryMain.removeAttribute('onclick');
+
+            galleryMain.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isSwiping = false;
+            }, { passive: true });
+
+            galleryMain.addEventListener('touchmove', (e) => {
+                const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+                const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+                // Horizontal swipe detected
+                if (diffX > 10 && diffX > diffY) {
+                    isSwiping = true;
+                }
+            }, { passive: true });
+
+            galleryMain.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                touchEndY = e.changedTouches[0].clientY;
+
+                const diffX = touchStartX - touchEndX;
+                const diffY = Math.abs(touchStartY - touchEndY);
+
+                // If horizontal swipe is larger than vertical
+                if (Math.abs(diffX) > 30 && Math.abs(diffX) > diffY) {
+                    handleSwipe(diffX);
+                } else if (!isSwiping && Math.abs(diffX) < 10 && diffY < 10) {
+                    // It's a tap, open lightbox
+                    const mainImg = document.getElementById('mainImage');
+                    if (mainImg) {
+                        openLightbox(mainImg.src);
+                    }
+                }
+            }, { passive: true });
+        }
+
+        function handleSwipe(diffX) {
+            const thumbs = document.querySelectorAll('.product-gallery-thumb');
+            if (thumbs.length === 0) return;
+
+            // Find current active index
+            thumbs.forEach((thumb, index) => {
+                if (thumb.classList.contains('active')) {
+                    currentImageIndex = index;
+                }
+            });
+
+            if (diffX > 0) {
+                // Swipe left - next image
+                currentImageIndex = (currentImageIndex + 1) % thumbs.length;
+            } else {
+                // Swipe right - previous image
+                currentImageIndex = (currentImageIndex - 1 + thumbs.length) % thumbs.length;
+            }
+
+            const targetThumb = thumbs[currentImageIndex];
+            const imgSrc = targetThumb.querySelector('img').src;
+            changeImage(imgSrc, targetThumb);
+
+            // Scroll thumb into view
+            targetThumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
 
         // Load product on page load
         loadProduct();

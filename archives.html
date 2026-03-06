@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=34">
+    <link rel="stylesheet" href="css/style.css?v=43">
 </head>
 <body>
     <!-- Google Translate Element (hidden) -->
@@ -145,19 +145,18 @@
     <section class="listing-section">
         <div class="container">
             <div class="listing-toolbar">
-                <p class="listing-results">Showing <strong>12</strong> timepieces</p>
+                <p class="listing-results">Showing <strong id="archiveCount">0</strong> timepieces</p>
                 <div class="listing-filters">
-                    <select class="filter-select">
-                        <option>All Status</option>
-                        <option>Sold</option>
-                        <option>Reserved</option>
-                    </select>
-                    <select class="filter-select">
-                        <option>Sort By</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                        <option>Recently Sold</option>
-                        <option>Brand A-Z</option>
+                    <select class="filter-select" id="archiveBrandFilter" onchange="filterArchivesByBrand(this.value)">
+                        <option value="">By Brands</option>
+                        <option value="patek-philippe">PATEK PHILIPPE</option>
+                        <option value="audemars-piguet">AUDEMARS PIGUET</option>
+                        <option value="vacheron-constantin">VACHERON CONSTANTIN</option>
+                        <option value="rolex">ROLEX</option>
+                        <option value="cartier">CARTIER</option>
+                        <option value="piaget">PIAGET</option>
+                        <option value="omega">OMEGA</option>
+                        <option value="other">OTHER BRANDS</option>
                     </select>
                 </div>
             </div>

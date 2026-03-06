@@ -42,7 +42,10 @@ class ProductLoader {
         if (category === 'archives') {
             return this.products.filter(product => product.status === 'archive');
         }
-        return this.products.filter(product => product.category.includes(category));
+        // 다른 카테고리에서는 archive 상품 제외
+        return this.products.filter(product =>
+            product.category.includes(category) && product.status !== 'archive'
+        );
     }
 
     createProductCard(product, delay = 1) {
@@ -79,8 +82,9 @@ class ProductLoader {
         const container = document.querySelector(containerSelector);
         if (!container) return;
 
+        // 'all' 카테고리에서는 archive 상품 제외 (Archives 페이지에서만 표시)
         this.filteredProducts = category === 'all'
-            ? this.products
+            ? this.products.filter(product => product.status !== 'archive')
             : this.filterByCategory(category);
 
         // Apply limit if specified (no pagination)
@@ -223,6 +227,52 @@ function quickView(productId) {
 
 // Global instance
 const productLoader = new ProductLoader();
+
+// Archive brand filter function
+function filterArchivesByBrand(brandValue) {
+    const container = document.querySelector('.product-grid[data-category="archives"]');
+    if (!container) return;
+
+    // Brand mapping (key: filter value, value: array of matching brand names in data)
+    const brandMap = {
+        'patek-philippe': ['PATEK', 'PATEK PHILIPPE'],
+        'audemars-piguet': ['AUDEMARS', 'AUDEMARS PIGUET'],
+        'vacheron-constantin': ['VACHERON', 'VACHERON CONSTANTIN'],
+        'rolex': ['ROLEX'],
+        'cartier': ['CARTIER'],
+        'piaget': ['PIAGET'],
+        'omega': ['OMEGA']
+    };
+
+    // Main brands for "other" filter
+    const mainBrands = ['PATEK', 'PATEK PHILIPPE', 'AUDEMARS', 'AUDEMARS PIGUET',
+                        'VACHERON', 'VACHERON CONSTANTIN', 'ROLEX', 'CARTIER', 'PIAGET', 'OMEGA'];
+
+    // Get all archive products
+    const archiveProducts = productLoader.products.filter(p => p.status === 'archive');
+
+    let filtered;
+    if (!brandValue) {
+        // Show all archives
+        filtered = archiveProducts;
+    } else if (brandValue === 'other') {
+        // Show products NOT in main brands
+        filtered = archiveProducts.filter(p => !mainBrands.includes(p.brand.toUpperCase()));
+    } else {
+        // Filter by specific brand
+        const brandNames = brandMap[brandValue] || [];
+        filtered = archiveProducts.filter(p => brandNames.includes(p.brand.toUpperCase()));
+    }
+
+    // Update count
+    const countEl = document.getElementById('archiveCount');
+    if (countEl) {
+        countEl.textContent = filtered.length;
+    }
+
+    // Render filtered products
+    productLoader.renderProductCards(container, filtered);
+}
 
 // Auto-initialize based on page data attribute
 document.addEventListener('DOMContentLoaded', () => {
