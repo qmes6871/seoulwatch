@@ -459,7 +459,7 @@ function initSearch() {
             const cacheBuster = `?t=${Date.now()}`;
             let response = await fetch('data/products.json' + cacheBuster);
             if (!response.ok) {
-                response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
+                response = await fetch('/data/products.json' + cacheBuster);
             }
             const data = await response.json();
             allProducts = data.products || [];
@@ -537,9 +537,12 @@ function initSearch() {
         renderResults(results, query);
     }
 
-    // Format price
+    // Format price with currency conversion
     function formatPrice(price) {
-        return price.toLocaleString('ko-KR');
+        if (window.CurrencyConverter) {
+            return window.CurrencyConverter.format(price);
+        }
+        return '₩' + price.toLocaleString('ko-KR');
     }
 
     // Render initial state with popular searches
@@ -602,7 +605,7 @@ function initSearch() {
                         <div class="search-result-info">
                             <p class="search-result-brand">${product.brand}</p>
                             <h4 class="search-result-name">${product.name}</h4>
-                            <p class="search-result-price">₩${formatPrice(product.price)}</p>
+                            <p class="search-result-price">${formatPrice(product.price)}</p>
                         </div>
                     </a>
                 `).join('')}
@@ -681,3 +684,100 @@ function googleTranslateElementInit() {
 
 // Make changeLanguage globally accessible
 window.changeLanguage = changeLanguage;
+
+/* --------------------------------------------------------------------------
+   14. Currency Conversion System
+   -------------------------------------------------------------------------- */
+const CurrencyConverter = {
+    rates: {
+        KRW: 1,
+        USD: 0.00072,  // 1 KRW = 0.00072 USD (약 1,389원/달러)
+        JPY: 0.11      // 1 KRW = 0.11 JPY (약 9.09원/엔)
+    },
+    symbols: {
+        KRW: '₩',
+        USD: '$',
+        JPY: '¥'
+    },
+    currentCurrency: 'KRW',
+    lastFetch: null,
+
+    // 현재 언어에 따른 화폐 결정
+    getCurrencyFromLanguage() {
+        const googtrans = document.cookie.split('; ').find(row => row.startsWith('googtrans='));
+        if (googtrans) {
+            const lang = googtrans.split('=')[1].split('/')[2];
+            if (lang === 'en') return 'USD';
+            if (lang === 'ja') return 'JPY';
+        }
+        return 'KRW';
+    },
+
+    // 실시간 환율 가져오기 (무료 API 사용)
+    async fetchRates() {
+        // 1시간마다 환율 업데이트
+        const now = Date.now();
+        const cached = localStorage.getItem('exchangeRates');
+        const cachedTime = localStorage.getItem('exchangeRatesTime');
+
+        if (cached && cachedTime && (now - parseInt(cachedTime)) < 3600000) {
+            const rates = JSON.parse(cached);
+            this.rates = rates;
+            return;
+        }
+
+        try {
+            // 무료 환율 API 사용
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/KRW');
+            if (response.ok) {
+                const data = await response.json();
+                this.rates = {
+                    KRW: 1,
+                    USD: data.rates.USD,
+                    JPY: data.rates.JPY
+                };
+                localStorage.setItem('exchangeRates', JSON.stringify(this.rates));
+                localStorage.setItem('exchangeRatesTime', now.toString());
+                console.log('Exchange rates updated:', this.rates);
+            }
+        } catch (error) {
+            console.log('Using fallback exchange rates');
+            // 폴백: 하드코딩된 환율 사용
+        }
+    },
+
+    // 가격 변환
+    convert(priceKRW, targetCurrency = null) {
+        const currency = targetCurrency || this.getCurrencyFromLanguage();
+        const rate = this.rates[currency] || 1;
+        return priceKRW * rate;
+    },
+
+    // 가격 포맷팅
+    format(priceKRW, targetCurrency = null) {
+        const currency = targetCurrency || this.getCurrencyFromLanguage();
+        const converted = this.convert(priceKRW, currency);
+        const symbol = this.symbols[currency];
+
+        if (currency === 'KRW') {
+            return symbol + converted.toLocaleString('ko-KR');
+        } else if (currency === 'USD') {
+            return symbol + converted.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        } else if (currency === 'JPY') {
+            return symbol + Math.round(converted).toLocaleString('ja-JP');
+        }
+        return symbol + converted.toLocaleString();
+    },
+
+    // 초기화
+    async init() {
+        this.currentCurrency = this.getCurrencyFromLanguage();
+        await this.fetchRates();
+    }
+};
+
+// Initialize currency converter
+CurrencyConverter.init();
+
+// Make globally accessible
+window.CurrencyConverter = CurrencyConverter;

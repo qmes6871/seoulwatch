@@ -21,7 +21,7 @@ class ProductLoader {
             // Try relative path first, then absolute
             let response = await fetch('data/products.json' + cacheBuster);
             if (!response.ok) {
-                response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
+                response = await fetch('/data/products.json' + cacheBuster);
             }
             const data = await response.json();
             this.products = data.products;
@@ -34,6 +34,10 @@ class ProductLoader {
     }
 
     formatPrice(price) {
+        // CurrencyConverter가 로드되어 있으면 환율 변환 적용
+        if (window.CurrencyConverter) {
+            return window.CurrencyConverter.format(price);
+        }
         return '₩' + price.toLocaleString('ko-KR');
     }
 

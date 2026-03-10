@@ -489,7 +489,7 @@
                 const cacheBuster = `?t=${Date.now()}`;
                 let response = await fetch('data/products.json' + cacheBuster);
                 if (!response.ok) {
-                    response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
+                    response = await fetch('/data/products.json' + cacheBuster);
                 }
                 const data = await response.json();
                 allProducts = data.products;
@@ -509,7 +509,18 @@
         }
 
         function formatPrice(price) {
-            return price.toLocaleString('ko-KR');
+            // CurrencyConverter가 로드되어 있으면 환율 변환 적용
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.format(price);
+            }
+            return '₩' + price.toLocaleString('ko-KR');
+        }
+
+        function getCurrencyCode() {
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.getCurrencyFromLanguage();
+            }
+            return 'KRW';
         }
 
         function showToast(message) {
@@ -567,7 +578,7 @@
                                 <h3 class="wishlist-item-name">${product.name}</h3>
                                 <p class="wishlist-item-name-en">${product.nameEn || ''}</p>
                                 <p class="wishlist-item-price">
-                                    <small>KRW</small>${formatPrice(product.price)}
+                                    <small>${getCurrencyCode()}</small>${formatPrice(product.price).replace(/^[₩$¥]/, '')}
                                 </p>
                                 <div class="wishlist-item-actions">
                                     <a href="checkout.html?id=${product.id}" class="wishlist-item-btn wishlist-item-btn-primary">구매하기</a>

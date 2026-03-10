@@ -958,7 +958,7 @@
                 const cacheBuster = `?t=${Date.now()}`;
                 let response = await fetch('data/products.json' + cacheBuster);
                 if (!response.ok) {
-                    response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
+                    response = await fetch('/data/products.json' + cacheBuster);
                 }
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);
@@ -979,7 +979,18 @@
         }
 
         function formatPrice(price) {
-            return price.toLocaleString('ko-KR');
+            // CurrencyConverter가 로드되어 있으면 환율 변환 적용
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.format(price);
+            }
+            return '₩' + price.toLocaleString('ko-KR');
+        }
+
+        function getCurrencyCode() {
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.getCurrencyFromLanguage();
+            }
+            return 'KRW';
         }
 
         function renderProduct(product) {
@@ -1036,8 +1047,8 @@
 
                             <div class="product-price-wrapper">
                                 <div class="product-price">
-                                    <span class="product-price-currency">KRW</span>
-                                    ${formatPrice(product.price)}
+                                    <span class="product-price-currency">${getCurrencyCode()}</span>
+                                    ${formatPrice(product.price).replace(/^[₩$¥]/, '')}
                                 </div>
                                 <p class="product-price-note">VAT 포함 / 정품 보증</p>
                             </div>

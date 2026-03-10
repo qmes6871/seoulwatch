@@ -618,7 +618,7 @@
                 const cacheBuster = `?t=${Date.now()}`;
                 let response = await fetch('data/products.json' + cacheBuster);
                 if (!response.ok) {
-                    response = await fetch('/seoulwatch/data/products.json' + cacheBuster);
+                    response = await fetch('/data/products.json' + cacheBuster);
                 }
                 const data = await response.json();
                 const product = data.products.find(p => p.id === productId);
@@ -637,7 +637,18 @@
         }
 
         function formatPrice(price) {
-            return price.toLocaleString('ko-KR');
+            // CurrencyConverter가 로드되어 있으면 환율 변환 적용
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.format(price);
+            }
+            return '₩' + price.toLocaleString('ko-KR');
+        }
+
+        function getCurrencyCode() {
+            if (window.CurrencyConverter) {
+                return window.CurrencyConverter.getCurrencyFromLanguage();
+            }
+            return 'KRW';
         }
 
         function renderCheckout(product) {
@@ -759,7 +770,7 @@
 
                     <div class="order-row">
                         <span class="order-row-label">상품 금액</span>
-                        <span class="order-row-value">₩${formatPrice(product.price)}</span>
+                        <span class="order-row-value">${formatPrice(product.price)}</span>
                     </div>
                     <div class="order-row">
                         <span class="order-row-label">배송비</span>
@@ -769,7 +780,7 @@
                     <div class="order-total">
                         <span class="order-total-label">총 결제금액</span>
                         <span class="order-total-value">
-                            <small>KRW</small>${formatPrice(product.price)}
+                            <small>${getCurrencyCode()}</small>${formatPrice(product.price).replace(/^[₩$¥]/, '')}
                         </span>
                     </div>
 
