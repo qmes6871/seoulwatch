@@ -248,7 +248,7 @@ def process_product(token, product, index, total):
         "nameEn": "",
         "price": price,
         "category": category,
-        "gender": gender,
+        "movement": "automatic",
         "image": local_images[0] if local_images else "",
         "images": local_images,
         "sku": str(channel_product_no),

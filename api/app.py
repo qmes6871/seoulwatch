@@ -237,7 +237,7 @@ def create_product():
         'nameEn': data.get('nameEn', ''),
         'price': int(data['price']),
         'category': data.get('category', []),
-        'gender': data.get('gender', 'unisex'),
+        'movement': data.get('movement', 'automatic'),
         'image': data.get('image', ''),
         'images': data.get('images', []),
         'sku': data['sku'],
@@ -272,7 +272,7 @@ def update_product(product_id):
             product['nameEn'] = data.get('nameEn', product.get('nameEn', ''))
             product['price'] = int(data.get('price', product['price']))
             product['category'] = data.get('category', product.get('category', []))
-            product['gender'] = data.get('gender', product.get('gender', 'unisex'))
+            product['movement'] = data.get('movement', product.get('movement', 'automatic'))
             product['image'] = data.get('image', product.get('image', ''))
             product['images'] = data.get('images', product.get('images', []))
             product['description'] = data.get('description', product.get('description', ''))

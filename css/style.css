@@ -1900,13 +1900,18 @@ img {
 
     .header {
         overflow: visible;
+        padding: 18px 0;
+    }
+
+    .header.scrolled {
+        padding: 12px 0;
     }
 
     .header-inner {
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: 0 16px;
+        padding: 0 20px;
         overflow: visible;
     }
 
@@ -1917,18 +1922,18 @@ img {
     }
 
     .logo img {
-        height: 24px;
+        height: 28px;
         width: auto;
         object-fit: contain;
     }
 
     .header.scrolled .logo img {
-        height: 22px;
+        height: 26px;
     }
 
     .header-right {
         order: 2;
-        gap: 0;
+        gap: 4px;
         flex-shrink: 0;
         margin-right: 0;
         padding-right: 0;
@@ -1940,35 +1945,62 @@ img {
 
     .header-icons {
         display: flex;
-        gap: 0;
+        gap: 4px;
     }
 
     .header-icon {
-        width: 28px;
-        height: 28px;
+        width: 34px;
+        height: 34px;
     }
 
     .header-icon svg {
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
     }
 
     .lang-selector .lang-btn {
-        width: 28px;
-        height: 28px;
+        width: 34px;
+        height: 34px;
         padding: 0;
     }
 
     .lang-selector .lang-btn svg {
-        width: 14px;
-        height: 14px;
+        width: 18px;
+        height: 18px;
     }
 
     .mobile-menu-btn {
         display: flex;
         order: 3;
         flex-shrink: 0;
-        margin-left: 0;
+        margin-left: 4px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .mobile-menu-btn span:nth-child(1) {
+        width: 18px;
+        top: 7px;
+    }
+
+    .mobile-menu-btn span:nth-child(2) {
+        width: 14px;
+        top: 13px;
+    }
+
+    .mobile-menu-btn span:nth-child(3) {
+        width: 18px;
+        top: 19px;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+        width: 16px;
+        top: 13px;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+        width: 16px;
+        top: 13px;
     }
 
     .nav-left {
@@ -2409,67 +2441,75 @@ img {
 }
 
 @media (max-width: 480px) {
+    .header {
+        padding: 14px 0;
+    }
+
+    .header.scrolled {
+        padding: 10px 0;
+    }
+
     .header-inner {
-        padding: 0 12px;
+        padding: 0 16px;
     }
 
     .logo img {
-        height: 20px;
+        height: 24px;
     }
 
     .header.scrolled .logo img {
-        height: 18px;
+        height: 22px;
     }
 
     .header-icon {
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
     }
 
     .header-icon svg {
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
     }
 
     .lang-selector .lang-btn {
-        width: 24px;
-        height: 24px;
+        width: 30px;
+        height: 30px;
     }
 
     .lang-selector .lang-btn svg {
-        width: 12px;
-        height: 12px;
+        width: 16px;
+        height: 16px;
     }
 
     .mobile-menu-btn {
-        width: 20px;
-        height: 20px;
-        margin-left: 0;
+        width: 24px;
+        height: 24px;
+        margin-left: 2px;
     }
 
     .mobile-menu-btn span:nth-child(1) {
-        width: 14px;
-        top: 5px;
+        width: 16px;
+        top: 6px;
     }
 
     .mobile-menu-btn span:nth-child(2) {
-        width: 10px;
-        top: 9px;
+        width: 12px;
+        top: 11px;
     }
 
     .mobile-menu-btn span:nth-child(3) {
-        width: 14px;
-        top: 13px;
+        width: 16px;
+        top: 16px;
     }
 
     .mobile-menu-btn.active span:nth-child(1) {
-        width: 12px;
-        top: 9px;
+        width: 14px;
+        top: 11px;
     }
 
     .mobile-menu-btn.active span:nth-child(3) {
-        width: 12px;
-        top: 9px;
+        width: 14px;
+        top: 11px;
     }
 
     .footer-nav {

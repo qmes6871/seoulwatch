@@ -998,11 +998,16 @@
             const isSold = product.status === 'archive';
 
             // Extract specs from CSV data or use defaults
+            const movementLabels = {
+                'quartz': 'Quartz',
+                'manual': 'Manual',
+                'automatic': 'Automatic'
+            };
             const specs = {
                 reference: product.sku || '-',
                 brand: product.brand || '-',
                 condition: 'Excellent',
-                gender: product.gender === 'mens' ? 'Men' : 'Women'
+                movement: movementLabels[product.movement] || '-'
             };
 
             content.innerHTML = `
@@ -1069,8 +1074,8 @@
                                     <span class="quick-spec-value">${specs.condition}</span>
                                 </div>
                                 <div class="quick-spec">
-                                    <span class="quick-spec-label">Gender</span>
-                                    <span class="quick-spec-value">${specs.gender}</span>
+                                    <span class="quick-spec-label">Movement</span>
+                                    <span class="quick-spec-value">${specs.movement}</span>
                                 </div>
                             </div>
 

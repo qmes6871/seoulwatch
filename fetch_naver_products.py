@@ -228,7 +228,7 @@ def convert_to_site_format(naver_product, detail=None):
         "nameEn": "",
         "price": price,
         "category": category,
-        "gender": "unisex",
+        "movement": "automatic",
         "image": images[0] if images else "",
         "images": images,
         "sku": str(channel_product_no),
